@@ -1,4 +1,5 @@
 {
+  "home": "https://github.com/MikeySharma/News_Express.git/",
   "name": "news_express",
   "version": "0.1.0",
   "private": true,
@@ -40,6 +41,7 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "gh-pages": "^6.0.0"
   }
 }

@@ -1,18 +1,14 @@
-import React from 'react';
+
 import { Link } from 'react-router-dom';
 
 
-const NavBar = ({setSearchData, updateNews}) => {
+const NavBar = ({searchData, updateNews}) => {
 
   const valueToSearch =(e) =>{
     if(e.key ==="Enter"){
-     setSearchData(()=> e.target.value)
-     setTimeout(()=>{
-       updateNews();
-     }, 600)
-
       
-
+      searchData = (`${e.target.value}`);
+       updateNews(searchData);
 
     } 
   }

@@ -19,12 +19,12 @@ const NewsContainer = (props) => {
   const [totalResults, setTotalResults] = useState(0);
   const [progress, setProgress] = useState(0);
 
-  const [searchData, setSearchData] = useState('general');
+  let searchData = (props.category)
 
 
   // document.title = `NewsExpress - ${capitalizeFirstLetter(searchData)}`;
 
-  const updateNews = async () => {
+  const updateNews = async (searchData) => {
     try{
     setProgress(10);
       const url=`https://newsapi.org/v2/everything?q=${searchData}&apiKey=${props.apiKey}&page=${page}&pagesize=${props.pageSize}`
@@ -42,9 +42,9 @@ const NewsContainer = (props) => {
   }
   useEffect(() => {
     setPage(page + 1)
-    updateNews();
+    updateNews(props.category);
     // eslint-disable-next-line
-  }, [])
+  }, [props.category])
 
 
 
@@ -66,7 +66,7 @@ const NewsContainer = (props) => {
 
   return (
     <>
-       <NavBar setSearchData={setSearchData} updateNews={updateNews} />
+       <NavBar searchData={searchData} updateNews={updateNews} />
           <LoadingBar
             color='#f11946'
             progress={progress}
@@ -82,9 +82,7 @@ const NewsContainer = (props) => {
       >
         <div className="container">
           <div className="row">
-            {articles.filter((item)=>{
-              return searchData.toLowerCase() ===''? item : item.title.toLowerCase().includes(searchData);
-            }).map((element,index) => {
+            {articles.map((element,index) => {
               return (
 
                 <div className="col-md-4 my-2" key={index}>
